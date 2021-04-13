@@ -2204,56 +2204,76 @@ client.on("guildMemberRemove", async member => {
     });
   }
 });
-var antibots = JSON.parse(fs.readFileSync("./antibots.json", "utf8"));
-let saveSteve = () => {
-  fs.writeFileSync(
-    "./antibots.json",
-    JSON.stringify(antibots, null, 2),
-    err => {
-      if (err) throw err;
-    }
-  );
-};
-client.on("message", message => {
-  if (!message.guild) return;
-  if (!antibots[message.guild.id])
-    config[message.guild.id] = {
-      onoff: "on"
-    };
-  if (message.content.startsWith(prefix + "antibots on")) {
-    if (message.author.bot || !message.channel.guild) return;
-    if (message.author.id !== message.guild.ownerID)
-      return message.channel.send(
-        "**🔐 Sorry just For Owner ship**"
-      );
-    antibots[message.guild.id] = {
-      onoff: "on"
-    };
-    saveSteve();
-    message.channel.send("**AntiBots Join Is On 🔐 **");
-  }
-  if (message.content.startsWith(prefix + "antibots off")) {
-    if (message.author.bot || !message.channel.guild) return;
-    if (message.author.id !== message.guild.ownerID)
-      return message.channel.send(
-        "**🔐 Sorry Just For owner ship**"
-      );
-    antibots[message.guild.id] = {
-      onoff: "off"
-    };
-    saveSteve();
-    message.channel.send("**AntiBots Join Is Off 🔓 **");
-  }
-  saveSteve();
-});
-client.on("guildMemberAdd", member => {
-  if (!antibots[member.guild.id])
-      if(antibots[member.guild.id].onoff === 'On') return;
-  if (antibots[member.guild.id].onoff == "Off") return;
-  if (member.user.bot) return member.ban("The anti bot is on!!");
-  saveSteve();
-});
 
+const antibots = JSON.parse(fs.readFileSync('./antibots.json' , 'utf8'))
+  client.on('message', message => {
+    if(message.content.startsWith(prefix + "antibots on")){
+          if(!message.channel.guild) return;
+        if(message.member.id !== message.guild.ownerID) return message.channel.send('Only Ownership can use this command')
+  antibots[message.guild.id] = {
+  onoff: 'On',
+  }
+  let embed = new Discord.MessageEmbed()
+      .setAuthor(message.author.username, message.author.avatarURL())
+      .setThumbnail(message.author.avatarURL())
+      .setTitle("**Done Check The Anti bots is on**") 
+      .addField("Server", `${message.guild.name}`)
+      .addField("Requested By:", `${message.author}`)
+      .setColor("RANDOM")
+      .setFooter(`${client.user.username}`)
+      .setTimestamp();
+    message.channel.send(embed);
+            fs.writeFile("./antibots.json", JSON.stringify(antibots), (err) => {
+              if (err) console.error(err)
+              .catch(err => {
+                console.error(err);
+            });
+              });
+            }
+ 
+          })
+  client.on('message', message => {
+    if(message.content.startsWith(prefix + "antibots off")) {
+          if(!message.channel.guild) return;
+           if(message.member.id !== message.guild.ownerID)return;
+  antibots[message.guild.id] = {
+  onoff: 'Off',
+  }
+      let embed = new Discord.MessageEmbed()
+      .setAuthor(message.author.username, message.author.avatarURL())
+      .setThumbnail(message.author.avatarURL())
+      .setTitle("**Done Check The Anti bots is off**") 
+      .addField("Server", `${message.guild.name}`)
+      .addField("Requested By:", `${message.author}`)
+      .setColor("RANDOM")
+      .setFooter(`${client.user.username}`)
+      .setTimestamp();
+    message.channel.send(embed);
+            fs.writeFile("./antibots.json", JSON.stringify(antibots), (err) => {
+              if (err) console.error(err)
+              .catch(err => {
+                console.error(err);
+            });
+              });
+            }
+ 
+          })
+ 
+  client.on("guildMemberAdd", member => {
+    if(!antibots[member.guild.id]) antibots[member.guild.id] = {
+  onoff: 'Off'
+  }
+    if(antibots[member.guild.id].onoff === 'Off') return;
+  if(member.user.bot) return member.ban("**antibots is one!!**")
+  })
+ 
+  fs.writeFile("./antibots.json", JSON.stringify(antibots), (err) => {
+  if (err) console.error(err)
+  .catch(err => {
+  console.error(err);
+  });
+ 
+  })
 
 ///////
 
