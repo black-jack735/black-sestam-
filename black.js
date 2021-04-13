@@ -511,7 +511,7 @@ client.on('message', async message => {
 }})
 client.on('message', async message => {
    if(message.content === reply[message.guild.id].msg) {
-       message.channel.send(reply[message.guild.id].reply)
+       message.reply(reply[message.guild.id].reply)
    }})
 
 
@@ -541,7 +541,7 @@ client.on("message", async message => {
 **The Prefix is a (b!)**
 
 **General**
- botinfo,server,ping,invites,say,embed,boosts,hightRole,nick,user,avatar,roles,emoji,sug,timer,youtube,google,weather,listemojis,my perms,
+ botinfo,server,ping,invites,say,embed,boosts,hightRole,nick,user,avatar,banner,icon,roles,emoji,sug,timer,youtube,google,weather,listemojis,my perms,
  covid,my perms,sbot,rank,calc,chinfo,count,guild,date,year,se static <emojiserver>,movie <movie name>
 
 **Moderation**
@@ -565,11 +565,7 @@ region,setSug,setWelcomer,setLeave,setOnlineVc,setLevel,setAutoRole,setLog,toggl
  **Fun**
  meme,slap,cuddle,kiss,boom,man,girl
  sad,love,hack,8ball,dog
-
-**Music**
-  play , stop , skip , queue ,clear-queue ,np ,  join
-  leave , vol,
-  
+ 
 [Support Server](https://discord.gg/zqgxs7RJpQ) 
 
 `);
