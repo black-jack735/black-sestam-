@@ -542,7 +542,7 @@ client.on("message", async message => {
 
 **General**
  botinfo,server,ping,invites,say,embed,boosts,hightRole,nick,user,avatar,banner,icon,roles,emoji,sug,timer,youtube,google,weather,listemojis,my perms,
- covid,my perms,sbot,rank,calc,chinfo,count,guild,date,year,se static <emojiserver>,movie <movie name>
+ covid,my perms,sbot,rank,calc,translate,chinfo,count,boosts,guild,date,year,se static <emojiserver>,movie <movie name>
 
 **Moderation**
 ban,kick,mute,unmute,tempmute,color,bans,roleinf
